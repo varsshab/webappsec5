@@ -45,12 +45,30 @@ TEMPLATES = [
     }
 ]
 
+
+
+DATABASE_PATH = os.environ.get(
+    "DATABASE_PATH",
+    "/tmp/swapshelf.db" if os.environ.get("VERCEL") else str(BASE_DIR / "data" / "swapshelf.db"),
+)
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.environ.get("DATABASE_PATH", BASE_DIR / "data" / "swapshelf.db"),
+        "NAME": DATABASE_PATH,
     }
 }
+
+
+
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.environ.get("DATABASE_PATH", BASE_DIR / "data" / "swapshelf.db"),
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = "en-us"
